@@ -7,5 +7,5 @@ import { Response, Request } from "express";
 export const getApi = (req: Request, res: Response) => {
     res.json({
         data: "Hello world"
-    })
+    });
 };
