@@ -41,4 +41,3 @@ dist/**/*
 yarn.lock
 
 redisData
-test.http

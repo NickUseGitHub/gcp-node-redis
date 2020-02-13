@@ -21,6 +21,10 @@ class RedisCon {
     this.client = redis.createClient({
       host: "localhost"
     });
+
+    this.client.on("connect", function() {
+      console.log("Redis connected!");
+    });
   }
 
   set(key: string, value: string) {

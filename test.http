@@ -1,0 +1,3 @@
+# GET http://localhost:3000/apis/test/ngong/jingPaWaaaa HTTP/1.1
+
+POST http://localhost:3000/apis/test/ngong HTTP/1.1
