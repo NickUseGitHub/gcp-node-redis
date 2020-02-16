@@ -1,9 +1,9 @@
-import express from "express";
+import express, { Response, Request } from "express";
 import bodyParser from "body-parser";
 import { ApiInterface } from "./controllers/apiTypes";
 
 import "./util/secrets";
-import "./util/connectors";
+// import "./util/connectors";
 
 // Controllers (route handlers)
 import apiRoutes from "./controllers/api";
