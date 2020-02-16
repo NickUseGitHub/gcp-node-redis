@@ -42,3 +42,4 @@ yarn.lock
 
 redisData
 credentials
+.terraform
