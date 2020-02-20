@@ -24,7 +24,7 @@ resource "kubernetes_deployment" "nodeappapi" {
 
       spec {
         container {
-          image = "asia.gcr.io/trf-starter/node-redis:v4"
+          image = "asia.gcr.io/trf-starter/node-redis:v1"
           name  = "node-redis"
           port {
             container_port = 3000
