@@ -1,8 +1,8 @@
-resource "kubernetes_deployment" "node-app-api" {
+resource "kubernetes_deployment" "nodeappapi" {
   metadata {
-    name = "node-app-api"
+    name = "nodeappapi"
     labels = {
-      app = "node-app-api"
+      app = "nodeappapi"
     }
   }
 
@@ -11,21 +11,24 @@ resource "kubernetes_deployment" "node-app-api" {
 
     selector {
       match_labels = {
-        app = "node-app-api"
+        app = "nodeappapi"
       }
     }
 
     template {
       metadata {
         labels = {
-          app = "node-app-api"
+          app = "nodeappapi"
         }
       }
 
       spec {
         container {
-          image = "asia.gcr.io/trf-starter/node-redis:v1"
+          image = "asia.gcr.io/trf-starter/node-redis:v4"
           name  = "node-redis"
+          port {
+            container_port = 3000
+          }
 
           resources {
             limits {
@@ -36,21 +39,6 @@ resource "kubernetes_deployment" "node-app-api" {
               cpu    = "250m"
               memory = "50Mi"
             }
-          }
-
-          liveness_probe {
-            http_get {
-              path = "/nginx_status"
-              port = 80
-
-              http_header {
-                name  = "X-Custom-Header"
-                value = "Awesome"
-              }
-            }
-
-            initial_delay_seconds = 3
-            period_seconds        = 3
           }
         }
       }
