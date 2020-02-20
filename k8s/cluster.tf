@@ -16,6 +16,10 @@ resource "google_container_cluster" "cluster" {
     password = ""
   }
 
+  timeouts {
+    create = "3m"
+  }
+
   addons_config {
     network_policy_config {
       disabled = "false"
