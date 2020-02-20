@@ -45,3 +45,21 @@ resource "kubernetes_deployment" "nodeappapi" {
     }
   }
 }
+
+resource "kubernetes_service" "nodeapp_service" {
+  metadata {
+    name = "nodeappapi-service"
+  }
+  spec {
+    selector = {
+      app = "${kubernetes_deployment.nodeappapi.metadata.0.labels.app}"
+    }
+    session_affinity = "ClientIP"
+    port {
+      port        = 3000
+      target_port = "${kubernetes_deployment.nodeappapi.spec.0.template.0.spec.0.container.0.port.0.container_port}"
+    }
+
+    type = "NodePort"
+  }
+}
