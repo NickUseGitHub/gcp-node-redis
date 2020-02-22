@@ -24,7 +24,7 @@ resource "kubernetes_deployment" "nodeappapi" {
 
       spec {
         container {
-          image = "asia.gcr.io/trf-starter/node-redis:v1"
+          image = "asia.gcr.io/trf-starter/node-redis:v2"
           name  = "node-redis"
           port {
             container_port = 3000
@@ -40,6 +40,17 @@ resource "kubernetes_deployment" "nodeappapi" {
               memory = "50Mi"
             }
           }
+
+          readiness_probe {
+            http_get {
+              path = "/"
+              port = 3000
+            }
+
+            initial_delay_seconds = 3
+            period_seconds        = 3
+          }
+
         }
       }
     }

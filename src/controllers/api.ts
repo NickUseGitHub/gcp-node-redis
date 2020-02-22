@@ -2,6 +2,10 @@ import { ApiInterface } from "./apiTypes";
 import { Response, Request } from "express";
 // import RedisConn from "../util/connectors";
 
+const echoApi = (req: Request, res: Response) => {
+  res.send("This is app apis");
+};
+
 const helloApi = (req: Request, res: Response) => {
   res.send("Hello world");
 };
@@ -37,6 +41,11 @@ const routes: Array<ApiInterface> = [
     method: "get",
     route: "/hello",
     callbackFn: helloApi
+  },
+  {
+    method: "get",
+    route: "/",
+    callbackFn: echoApi
   }
   // {
   //   method: "get",
