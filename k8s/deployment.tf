@@ -24,10 +24,16 @@ resource "kubernetes_deployment" "nodeappapi" {
 
       spec {
         container {
-          image = "asia.gcr.io/trf-starter/node-redis:v2"
+          image = "asia.gcr.io/trf-starter/node-redis:v3"
           name  = "node-redis"
           port {
             container_port = 3000
+          }
+
+          env_from {
+            config_map_ref {
+              name = "${kubernetes_config_map.nodeapi_env.metadata.0.name}"
+            }
           }
 
           resources {

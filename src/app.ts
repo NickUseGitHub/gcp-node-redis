@@ -13,6 +13,7 @@ const app = express();
 
 // Express configuration
 app.set("port", process.env.PORT || 3000);
+app.set("appversion", process.env.APP_VERSION);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
