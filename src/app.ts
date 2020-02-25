@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import { ApiInterface } from "./controllers/apiTypes";
 
 import "./util/secrets";
-import "./util/connectors";
+// import "./util/connectors";
 
 // Controllers (route handlers)
 import apiRoutes from "./controllers/api";
@@ -13,6 +13,7 @@ const app = express();
 
 // Express configuration
 app.set("port", process.env.PORT || 3000);
+app.set("appversion", process.env.APP_VERSION);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
