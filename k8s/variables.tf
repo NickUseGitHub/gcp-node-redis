@@ -3,6 +3,10 @@ variable "credentials" {
   description = "Location of the credentials keyfile."
 }
 
+variable "nginx_conf_pathfile" {
+  type = string
+}
+
 variable "project_id" {
   type        = string
   description = "The project ID to host the cluster in."

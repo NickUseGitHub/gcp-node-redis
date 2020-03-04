@@ -24,17 +24,18 @@ resource "kubernetes_deployment" "nodeappapi" {
 
       spec {
         container {
-          image = "asia.gcr.io/trf-starter/node-redis:v3"
+          # image = "asia.gcr.io/trf-starter/node-redis:v3"
+          image = "nginx:1.17.8-alpine"
           name  = "node-redis"
           port {
             container_port = 3000
           }
 
-          env_from {
-            config_map_ref {
-              name = "${kubernetes_config_map.nodeapi_env.metadata.0.name}"
-            }
-          }
+          # env_from {
+          #   config_map_ref {
+          #     name = "${kubernetes_config_map.nodeapi_env.metadata.0.name}"
+          #   }
+          # }
 
           resources {
             limits {
@@ -45,6 +46,12 @@ resource "kubernetes_deployment" "nodeappapi" {
               cpu    = "250m"
               memory = "50Mi"
             }
+          }
+
+          volume_mount {
+            mount_path = "/etc/nginx"
+            name       = "nginx-config"
+            read_only  = true
           }
 
           readiness_probe {
@@ -58,6 +65,14 @@ resource "kubernetes_deployment" "nodeappapi" {
           }
 
         }
+
+        volume {
+          name = "nginx-config"
+          config_map {
+            name = "nginx-config"
+          }
+        }
+
       }
     }
   }

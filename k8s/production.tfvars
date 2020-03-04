@@ -1,4 +1,5 @@
 credentials                    = "./credentials/trf-starter-key.json"
+nginx_conf_pathfile            = "./conf/nginx.conf"
 project_id                     = "trf-starter"
 region                         = "asia-southeast1"
 name                           = "trf-cluster"
